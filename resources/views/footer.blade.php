@@ -2,5 +2,5 @@
     <br/>
     <hr/>
     <footer>
-        <p>&copy: Tommy Gunawan, 2023</p>
+        <p>&copy: PSO Kelas B, 2024</p>
     </footer>
