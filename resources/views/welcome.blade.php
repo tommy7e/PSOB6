@@ -17,5 +17,6 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <h1>Kelompok 6 Jaya Jaya Jaya!</h1>
+        <h1>test changes</h1>
     </body>
 </html>
