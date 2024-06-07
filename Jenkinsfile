@@ -1,35 +1,39 @@
 pipeline {
-  agent any
-
-  stages {
-    stage('Clone') {
-      steps {
-        git 'https://github.com/tommy7e/PSOB6.git'
+    agent { 
+        node {
+            label 'docker-agent-python'
+            }
       }
+    triggers {
+        pollSCM '* * * * *'
     }
-
-    stage('Build') {
-      steps {
-        script {
-          dockerImage = docker.build("tommy7e/PSOB6:latest")
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+                sh '''
+                cd myapp
+                pip install -r requirements.txt
+                '''
+            }
         }
-      }
-    }
-
-    stage('Testing') {
-      steps {
-        sh 'npm test'
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        script {
-          docker.withRegistry('', 'dockerhub-credentials') {
-            dockerImage.push()
-          }
+        stage('Test') {
+            steps {
+                echo "Testing.."
+                sh '''
+                cd myapp
+                python3 hello.py
+                python3 hello.py --name=Brad
+                '''
+            }
         }
-      }
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
+            }
+        }
     }
-  }
 }
