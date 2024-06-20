@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 //route CRUD
-Route::get('/home','App\Http\Controllers\TugasController@index');
+Route::get('/','App\Http\Controllers\TugasController@index');
 Route::get('/tugas/tambah','App\Http\Controllers\TugasController@tambah');
 Route::post('/tugas/store','App\Http\Controllers\TugasController@store');
 Route::get('/tugas/edit/{id}','App\Http\Controllers\TugasController@edit');
